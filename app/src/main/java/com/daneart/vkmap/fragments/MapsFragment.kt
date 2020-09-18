@@ -2,11 +2,13 @@ package com.daneart.vkmap.fragments
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -24,18 +26,19 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
     private lateinit var map: GoogleMap
     private lateinit var coordinates: LatLng
     private var number = 0L
-    val colors = arrayOf(
-        335.6F, //Хорошее
-        202.5F, // Активное
-        30F,    // Гиперактивное
-        50.3F,  // Спокойное
-        158.4F, // Беспокойное
-        183.4F, // Усталое
-        104.7F, // Расслабленное
-        72.1F,  // Негативное
-        50.4F
+    val colors = mapOf<String, Float>(
+        "\uD83D\uDE0C Хорошее" to 335.6F, //Хорошее
+        "Активное" to 202.5F, // Активное
+        "\uD83D\uDE1C Гиперактивное" to 30F,    // Гиперактивное
+        "\uD83D\uDE10 Спокойное" to 50.3F,  // Спокойное
+        "\uD83D\uDE41 Беспокойное" to 158.4F, // Беспокойное
+        "\uD83D\uDE34 Усталое" to 183.4F, // Усталое
+        "Расслабленное" to 104.7F, // Расслабленное
+        "Негативное" to 72.1F,  // Негативное
+        "НАСТРОЕНИЕ" to 50.4F
     )
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -62,7 +65,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
                             LatLng(lat, long),
                             mapp.get("emotion").toString(),
                             mapp.get("author").toString(),
-                            colors[0]
+                            colors.getOrDefault(mapp.get("author").toString(), 50.4F)
                         )
                     }
                 } else {
@@ -100,13 +103,13 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
         map = googleMap
         enableMyLocation()
         setMapLongClick()
-        createMarker(
-            googleMap,
-            LatLng(59.968771, 30.293110),
-            "hint",
-            "category",
-            colors[0]
-        )
+        /*  createMarker(
+              googleMap,
+              LatLng(59.968771, 30.293110),
+              "hint",
+              "category",
+              colors[0]
+          )*/
         val overlaySize = 10000f
         val androidOverlay = GroundOverlayOptions()
             .image(BitmapDescriptorFactory.fromResource(R.drawable.emo1))
