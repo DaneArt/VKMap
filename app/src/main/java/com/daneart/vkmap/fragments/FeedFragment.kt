@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import com.daneart.vkmap.R
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_feed.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -42,6 +43,7 @@ class FeedFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
         fab_map.setOnClickListener {
             it.findNavController().navigate(R.id.action_feedFragment_to_mapsFragment)
         }
