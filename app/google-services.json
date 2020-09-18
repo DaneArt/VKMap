@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "908833257679",
+    "firebase_url": "https://vkmap-dc1b0.firebaseio.com",
+    "project_id": "vkmap-dc1b0",
+    "storage_bucket": "vkmap-dc1b0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:908833257679:android:090370a6501db4204a9fba",
+        "android_client_info": {
+          "package_name": "com.daneart.vkmap"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "908833257679-6jablk0qqju0ms0rlmt85pdeo1a6psdv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWLRV_nrOdRTbzqBT3gNkT0O9AWl2zDnA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "908833257679-6jablk0qqju0ms0rlmt85pdeo1a6psdv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
