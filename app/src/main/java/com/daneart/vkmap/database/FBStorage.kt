@@ -1,7 +1,7 @@
 package com.daneart.vkmap.database
 
+import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.gson.Gson
 
 object FBStorage {
 
@@ -9,10 +9,23 @@ object FBStorage {
 
 
     fun addPost(post: Post) {
-        val jsonPost = Gson().toJson(post)
+        val jsonPost = mapOf(
+            "id" to post.id.toString(),
+            "content" to post.content,
+            "author" to post.author,
+            "theme" to post.theme,
+            "emotion" to post.emotion,
+            "latitude" to post.latitude,
+            "longitude" to post.longitude
+        )
         dataBase.collection("posts")
             .add(jsonPost)
-            
+            .addOnCompleteListener {
+                Log.d("TAG", "Completed adding")
+            }
+            .addOnCanceledListener {
+                Log.d("TAG", "Canceled adding")
+            }
     }
 
 }

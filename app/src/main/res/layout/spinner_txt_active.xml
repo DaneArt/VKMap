@@ -14,7 +14,7 @@
         android:fontFamily="@font/roboto_medium"
         android:padding="8dp"
         android:text="НАСТРОЕНИЕ"
-        android:textAlignment="center"
+        android:textAlignment="textStart"
         android:textColor="#818C99"
         android:textSize="11sp" />
 

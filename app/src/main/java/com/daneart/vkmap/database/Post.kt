@@ -1,21 +1,21 @@
 package com.daneart.vkmap.database
 
-import android.net.Uri
 import com.google.type.LatLng
+import java.io.Serializable
 import java.util.*
 
-enum class Emotion(val rus:String){
+enum class Emotion(val rus: String) {
+    Positive("Хорошее"),
+    Action("Активное"),
+    HighEnergy("Гиперактивное"),
+    Calm("Спокойное"),
     Anxiety("Беспокойное"),
-    Action("Энергия"),
-    HighEnergy(""),
-    Positive(""),
-    Calm(""),
-    LowEnergy(""),
-    Tired(""),
-    Negative("")
+    Tired("Усталое"),
+    LowEnergy("Расслабленное"),
+    Negative("Негативное")
 }
 
-enum class Theme(val rus:String){
+enum class Theme(val rus: String) {
     Art("Арт"),
     Photo("Фото"),
     Science("Наука"),
@@ -31,7 +31,12 @@ enum class Theme(val rus:String){
     Coronavirus("Коронавирус")
 }
 
-sealed class Post(val id:UUID, val content:Any?, val author: String, val theme: Theme, val emotion:Emotion, val latLng:LatLng) {
-    class TextPost(id: UUID, textContent: String?, author: String, theme: Theme, emotion:Emotion,latLng:LatLng) : Post(id = id, content = textContent, author = author, theme = theme, emotion = emotion,latLng = latLng)
-    class ImagePost(id: UUID, imageContent: Uri?, author: String,theme: Theme, emotion:Emotion,latLng:LatLng) : Post(id = id, content = imageContent, author = author, theme = theme,emotion = emotion,latLng = latLng)
-}
+data class Post(
+    val id: UUID,
+    val content: String?,
+    val author: String,
+    val theme: String,
+    val emotion: String,
+    val latitude: Double,
+    val longitude: Double
+)
