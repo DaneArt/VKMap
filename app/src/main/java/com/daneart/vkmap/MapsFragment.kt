@@ -7,16 +7,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
-class MapsFragment : Fragment(), OnMapReadyCallback {
 
-    val colors = arrayOf(
+class MapsFragment : Fragment(), OnMapReadyCallback {
+    private lateinit var Gmap: GoogleMap
+    private val colors = arrayOf(
         335.6F,
         202.5F,
         30F,
@@ -34,23 +35,26 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_maps, container, false)
-
+        /*val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
+        mapFragment?.getMapAsync(this)*/
+        val mMapView = root.findViewById<View>(R.id.map) as MapView
+        mMapView.onCreate(savedInstanceState)
+        mMapView.getMapAsync(this) //this is important
 
 
         return root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
-        mapFragment?.getMapAsync(this)
-    }
-
     override fun onMapReady(map: GoogleMap?) {
-        val point1: LatLng = LatLng(59.935722, 30.325729)
+        val point1 = LatLng(59.935722, 30.325729)
         val hint = "Здесь дают макбуки"
         val title = "HQ VK"
+
         if (map != null) {
+            Gmap = map
+            map.addMarker(
+                MarkerOptions().position(point1).title(title).snippet(hint)
+            )
             createMarker(
                 googleMap = map,
                 point = point1,
@@ -59,6 +63,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
                 color = colors[0]
             )
         }
+
     }
 
 
@@ -82,12 +87,12 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
         )
     }
 
-    /*private fun setMapLongClick() {
-        map.setOnMapLongClickListener { latLng ->
-            map.addMarker(
+    private fun setMapLongClick() {
+        Gmap.setOnMapLongClickListener { latLng ->
+            Gmap.addMarker(
                 MarkerOptions()
                     .position(latLng).title(latLng.toString())
             )
         }
-    }*/
+    }
 }
