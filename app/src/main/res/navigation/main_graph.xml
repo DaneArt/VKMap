@@ -3,11 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_graph"
-    app:startDestination="@id/editorFragment">
+    app:startDestination="@id/mapsFragment">
 
     <fragment
         android:id="@+id/editorFragment"
         android:name="com.daneart.vkmap.fragments.EditorFragment"
         android:label="fragment_editor"
         tools:layout="@layout/fragment_editor" />
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.daneart.vkmap.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" />
 </navigation>

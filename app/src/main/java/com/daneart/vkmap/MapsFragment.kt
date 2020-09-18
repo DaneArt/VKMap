@@ -10,8 +10,8 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.MapFragment
 import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
@@ -49,23 +49,12 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
-        val mapFragment = this.childFragmentManager.findFragmentById(R.id.map) as MapFragment?
+        val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(this)
-        showExistMap()
-    }
-
-
-    private fun showExistMap() {
-        createMarker(
-            map,
-            LatLng(59.968771, 30.293110),
-            "hint",
-            "category",
-            colors[0]
-        )
 
     }
+
+
 
 
     private fun setMapLongClick() {
@@ -80,7 +69,13 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
         map = googleMap
         enableMyLocation()
         setMapLongClick()
-
+        createMarker(
+            googleMap,
+            LatLng(59.968771, 30.293110),
+            "hint",
+            "category",
+            colors[0]
+        )
     }
 
     private fun createMarker(
