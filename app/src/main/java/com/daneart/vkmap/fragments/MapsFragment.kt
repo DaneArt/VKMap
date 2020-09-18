@@ -76,7 +76,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
             "category",
             colors[0]
         )
-        val overlaySize = 18f
+        val overlaySize = 10000f
         val androidOverlay = GroundOverlayOptions()
             .image(BitmapDescriptorFactory.fromResource(R.drawable.emo1))
             .position(LatLng(59.968771, 30.293110), overlaySize)
