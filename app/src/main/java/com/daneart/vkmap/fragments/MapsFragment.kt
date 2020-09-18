@@ -1,7 +1,9 @@
 package com.daneart.vkmap.fragments
+
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +16,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
+import com.google.firebase.firestore.FirebaseFirestore
 
 
 class MapsFragment : Fragment(), OnMapReadyCallback {
@@ -40,6 +43,34 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
     ): View? {
 
         val root: View = inflater.inflate(R.layout.fragment_maps, container, false)
+
+        val db = FirebaseFirestore.getInstance()
+        db.collection("posts")
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    for (document in task.result!!) {
+                        Log.d("TAG", "i m here")
+                        var lat: Double
+                        var long: Double
+                        Log.d("TAG", document.id + " => " + document.data)
+                        val mapp = document.data
+                        lat = mapp.get("latitude") as Double
+                        long = mapp.get("longitude") as Double
+                        createMarker(
+                            map,
+                            LatLng(lat, long),
+                            mapp.get("emotion").toString(),
+                            mapp.get("author").toString(),
+                            colors[0]
+                        )
+                    }
+                } else {
+                    Log.w("TAG", "Error getting documents.", task.exception)
+                }
+            }
+
+
 
         return root
     }
@@ -81,6 +112,8 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
             .image(BitmapDescriptorFactory.fromResource(R.drawable.emo1))
             .position(LatLng(59.968771, 30.293110), overlaySize)
         map.addGroundOverlay(androidOverlay)
+
+
     }
 
     private fun createMarker(
