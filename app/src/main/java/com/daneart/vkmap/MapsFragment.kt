@@ -12,10 +12,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.CameraPosition
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
 
 
 class MapsFragment : Fragment(), OnMapReadyCallback {
@@ -54,7 +51,9 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
 
     }
 
+    private fun sticker() {
 
+    }
 
 
     private fun setMapLongClick() {
@@ -76,6 +75,11 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
             "category",
             colors[0]
         )
+        val overlaySize = 18f
+        val androidOverlay = GroundOverlayOptions()
+            .image(BitmapDescriptorFactory.fromResource(R.drawable.emo1))
+            .position(LatLng(59.968771, 30.293110), overlaySize)
+        map.addGroundOverlay(androidOverlay)
     }
 
     private fun createMarker(
