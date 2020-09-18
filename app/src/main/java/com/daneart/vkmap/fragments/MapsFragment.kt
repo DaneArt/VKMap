@@ -25,14 +25,14 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
     private lateinit var coordinates: LatLng
     private var number = 0L
     val colors = arrayOf(
-        335.6F,
-        202.5F,
-        30F,
-        50.3F,
-        158.4F,
-        183.4F,
-        104.7F,
-        72.1F,
+        335.6F, //Хорошее
+        202.5F, // Активное
+        30F,    // Гиперактивное
+        50.3F,  // Спокойное
+        158.4F, // Беспокойное
+        183.4F, // Усталое
+        104.7F, // Расслабленное
+        72.1F,  // Негативное
         50.4F
     )
 
