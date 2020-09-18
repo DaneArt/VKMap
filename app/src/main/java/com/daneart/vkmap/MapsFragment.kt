@@ -51,6 +51,14 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
         val title = "HQ VK"
 
         if (map != null) {
+            //These coordinates represent the latitude and longitude of the Googleplex.
+            val latitude = 37.422160
+            val longitude = -122.084270
+            val zoomLevel = 15f
+
+            val homeLatLng = LatLng(latitude, longitude)
+            map.moveCamera(CameraUpdateFactory.newLatLngZoom(homeLatLng, zoomLevel))
+            map.addMarker(MarkerOptions().position(homeLatLng))
             Gmap = map
             map.addMarker(
                 MarkerOptions().position(point1).title(title).snippet(hint)
