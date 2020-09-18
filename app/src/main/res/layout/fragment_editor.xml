@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.EditorFragment">
+
+    <LinearLayout
+        android:id="@+id/actionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/btn_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:background="?selectableItemBackground"
+
+
+            android:paddingStart="16dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="16dp"
+            android:src="@mipmap/ic_cancel_16" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?selectableItemBackground"
+            android:drawableRight="@mipmap/ic_dropdown_10"
+            android:drawablePadding="9dp"
+            android:paddingStart="16dp"
+            android:text="Матвей"
+            android:textAlignment="textStart"
+            android:textAllCaps="false"
+            android:textFontWeight="700"
+            android:textSize="23dp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="6" />
+
+        <ImageButton
+            android:id="@+id/btn_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="?selectableItemBackground"
+
+
+            android:gravity="end"
+
+            android:padding="16dp"
+            android:src="@mipmap/ic_check_16" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/div_edit"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="4dp"
+        android:background="#D7D8D9"
+        app:layout_constraintTop_toBottomOf="@+id/actionBar" />
+
+    <EditText
+        android:id="@+id/et_main"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@null"
+        android:fontFamily="@font/roboto_medium"
+        android:gravity="top"
+        app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/div_edit"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/ibtn_color_picker"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_margin="16dp"
+        android:background="?selectableItemBackground"
+        android:padding="8dp"
+        android:src="@mipmap/poster_icon_28"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/ibtn_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="?selectableItemBackground"
+        android:padding="8dp"
+
+
+        android:src="@drawable/ic_gallery_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ibtn_color_picker" />
+
+    <ImageButton
+        android:id="@+id/ibtn_music"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="?selectableItemBackground"
+        android:padding="8dp"
+        android:paddingEnd="12dp"
+
+        android:src="@drawable/ic_music_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ibtn_image" />
+
+    <ImageButton
+        android:id="@+id/ibtn_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="10dp"
+        android:background="?selectableItemBackground"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="10dp"
+
+
+        android:src="@drawable/ic_actions_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ibtn_music" />
+
+    <ImageButton
+        android:id="@+id/ibtn_dropdown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="?selectableItemBackground"
+        android:padding="16dp"
+        android:src="@drawable/ic_dropdown_gray_16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageButton
+        android:id="@+id/ibtn_setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginBottom="6dp"
+        android:background="?selectableItemBackground"
+        android:padding="8dp"
+
+        android:src="@drawable/ic_settings_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/ibtn_dropdown" />
+
+    <ImageButton
+        android:id="@+id/ibtn_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="?selectableItemBackground"
+        android:padding="8dp"
+
+        android:src="@drawable/ic_dog_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/ibtn_setting" />
+
+    <View
+        android:id="@+id/div_edit2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="14dp"
+        android:background="#D7D8D9"
+        app:layout_constraintBottom_toTopOf="@+id/ibtn_image" />
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
+        app:layout_constraintBottom_toTopOf="@+id/div_edit2"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp">
+
+            <Button
+                android:id="@+id/btn_see_all"
+                style="@style/ButtonOutline"
+                android:layout_width="wrap_content"
+                android:drawableStart="@drawable/ic_person_16"
+                android:drawableEnd="@drawable/ic_dropdown_gray_16"
+                android:text="Видно всем" />
+
+            <Button
+                android:id="@+id/btn_time"
+                style="@style/ButtonOutline"
+                android:layout_width="wrap_content"
+
+                android:drawableStart="@drawable/ic_clock_16"
+                android:drawableEnd="@drawable/ic_dropdown_gray_16"
+                android:text="Сейчас" />
+
+            <Spinner
+                android:id="@+id/btn_emotion"
+                android:layout_height="@dimen/dimen_large_32"
+                android:background="@null"
+                android:layout_marginHorizontal="4dp"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:drawableEnd="@drawable/ic_dropdown_gray_16"
+                android:entries="@array/emojis" />
+
+            <Spinner
+                android:id="@+id/btn_theme"
+                android:layout_height="@dimen/dimen_large_32"
+                android:background="@null"
+                android:layout_marginHorizontal="4dp"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:entries="@array/emojis" />
+
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

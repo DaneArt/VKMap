@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dimen_large_32">32dp</dimen>
+    <dimen name="btn_margin_4">4dp</dimen>
+    <dimen name="radius_small">8dp</dimen>
+</resources>

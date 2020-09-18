@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">VKMap</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="emojis">
+        <item>НАСТРОЕНИЕ</item>
+        <item>😌</item>
+        <item>😃</item>
+        <item>😜</item>
+        <item>😐</item>
+        <item>🙁</item>
+        <item>😴</item>
+    </string-array>
 </resources>
