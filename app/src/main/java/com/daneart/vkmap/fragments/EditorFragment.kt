@@ -181,25 +181,32 @@ class EditorFragment : Fragment() {
     /*---------- Listener class to get coordinates ------------- */
     inner class MyLocationListener : LocationListener {
         override fun onLocationChanged(loc: Location) {
-try {
+            try {
 
-    val longitude = loc.longitude
+                val longitude = loc.longitude
 
-    val latitude = loc.latitude
+                val latitude = loc.latitude
 
-    val post = Post(
-        id = UUID.randomUUID(),
-        content = et_main.text.toString(),
-        author = "Маруся",
-        theme = btn_theme.selectedItem as String,
-        emotion = btn_emotion.selectedItem as String,
-        latitude = latitude,
-        longitude = longitude
-    )
+                if(btn_theme.selectedItem != "ТЕМАТИКА" && btn_emotion.selectedItem !="НАСТРОЕНИЕ"){
+                    val post = Post(
+                        id = UUID.randomUUID(),
+                        content = et_main.text.toString(),
+                        author = "Маруся",
+                        theme = btn_theme.selectedItem as String,
+                        emotion = btn_emotion.selectedItem as String,
+                        latitude = latitude,
+                        longitude = longitude
+                    )
+                        addPost(post)
+                }else{
+                    Toast.makeText(requireContext(),"Необходимо задать настроение и тематику", Toast.LENGTH_SHORT).show()
+                }
 
-    addPost(post)
 
-}catch (e:Throwable){}
+
+
+            } catch (e: Throwable) {
+            }
         }
 
         override fun onProviderDisabled(provider: String) {}

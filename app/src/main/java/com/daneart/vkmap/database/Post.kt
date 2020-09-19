@@ -5,14 +5,14 @@ import java.io.Serializable
 import java.util.*
 
 enum class Emotion(val rus: String) {
-    Positive("Хорошее"),
-    Action("Активное"),
-    HighEnergy("Гиперактивное"),
-    Calm("Спокойное"),
-    Anxiety("Беспокойное"),
-    Tired("Усталое"),
-    LowEnergy("Расслабленное"),
-    Negative("Негативное")
+    Positive("\uD83D\uDE0C Хорошее"),
+    Action("\uD83D\uDE03 Активное"),
+    HighEnergy("\uD83D\uDE1C Гиперактивное"),
+    Calm("\uD83D\uDE10 Спокойное"),
+    Anxiety("\uD83D\uDE41 Беспокойное"),
+    Tired("\uD83D\uDE34 Усталое"),
+    LowEnergy("\uD83E\uDD24 Расслабленное"),
+    Negative("\uD83D\uDE21 Негативное")
 }
 
 enum class Theme(val rus: String) {
