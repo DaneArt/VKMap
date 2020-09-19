@@ -34,7 +34,7 @@ import kotlin.math.*
 
 class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
     private val REQUEST_LOCATION_PERMISSION = 1
-    private lateinit var map: GoogleMap
+    private var map: GoogleMap? = null
     private lateinit var coordinates: LatLng
     private var groups = arrayListOf<LatGroup>()
     private var groupedGroups = hashMapOf<LatLng, ArrayList<LatGroup>>()
@@ -108,7 +108,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
                             }
                             sG.topThemes.sortBy { it.second }
                             createMarker(
-                                map,
+                                map!!,
                                 LatLng(
                                     sG.mainPost.latitude+latDif,
                                     sG.mainPost.longitude+latDif
@@ -139,7 +139,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
                         }
 
                     }
-                    map.moveCamera(CameraUpdateFactory.newLatLng(map.cameraPosition.target))
+                    map?.moveCamera(CameraUpdateFactory.newLatLng(map!!.cameraPosition.target))
 
                 } else {
                     Log.w("TAG", "Error getting documents.", task.exception)
@@ -258,7 +258,10 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
 
     override fun onResume() {
         super.onResume()
-        map.clear()
+        if(map!=null){
+            map?.clear()
+        }
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -271,8 +274,8 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
     }
 
     private fun setMapLongClick() {
-        map.setOnMapLongClickListener { latLng ->
-            map.addMarker(MarkerOptions().position(latLng))
+        map?.setOnMapLongClickListener { latLng ->
+            map?.addMarker(MarkerOptions().position(latLng))
             coordinates = latLng
         }
     }
@@ -334,7 +337,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
             ) {
                 return
             }
-            map.isMyLocationEnabled = true
+            map?.isMyLocationEnabled = true
         } else {
             ActivityCompat.requestPermissions(
                 requireActivity(),

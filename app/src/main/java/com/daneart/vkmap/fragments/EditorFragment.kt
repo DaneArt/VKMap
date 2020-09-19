@@ -90,33 +90,40 @@ class EditorFragment : Fragment() {
                     requireContext(),
                     android.Manifest.permission.ACCESS_COARSE_LOCATION
                 ) != PackageManager.PERMISSION_GRANTED
-                || ContextCompat.checkSelfPermission(
-                    requireContext(),
-                    android.Manifest.permission.ACCESS_FINE_LOCATION
-                ) != PackageManager.PERMISSION_GRANTED
+
             ) {
 
                 ActivityCompat.requestPermissions(
                     requireActivity(),
                     arrayOf(
                         android.Manifest.permission.ACCESS_COARSE_LOCATION,
-                        android.Manifest.permission.ACCESS_COARSE_LOCATION
+                        android.Manifest.permission.ACCESS_FINE_LOCATION
+
                     ),
                     0
                 )
             } else {
-                val locationManager =
-                    getSystemService<LocationManager>(requireContext(), LocationManager::class.java)
-                if (locationManager!!.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-                    val locationListener: LocationListener = MyLocationListener()
+                if(btn_theme.selectedItem != "ТЕМАТИКА" && btn_emotion.selectedItem !="НАСТРОЕНИЕ") {
+                    val locationManager =
+                        getSystemService<LocationManager>(
+                            requireContext(),
+                            LocationManager::class.java
+                        )
+                    if (locationManager!!.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                        val locationListener: LocationListener = MyLocationListener()
 
-                    locationManager?.requestLocationUpdates(
-                        LocationManager.GPS_PROVIDER, 5000, 10f, locationListener
-                    )
-                } else {
-                    Toast.makeText(requireContext(), "Включите GPS", Toast.LENGTH_LONG).show()
+                        locationManager?.requestLocationUpdates(
+                            LocationManager.GPS_PROVIDER, 5000, 10f, locationListener
+                        )
+                        requireView().findNavController()
+                            .navigate(R.id.action_editorFragment_to_feedFragment)
+                    } else {
+                        Toast.makeText(requireContext(), "Включите GPS", Toast.LENGTH_LONG).show()
+                    }
+                }else{
+                    Toast.makeText(requireContext(),"Необходимо задать настроение и тематику", Toast.LENGTH_SHORT).show()
+
                 }
-
 
             }
         }
@@ -155,6 +162,8 @@ class EditorFragment : Fragment() {
                         locationManager?.requestLocationUpdates(
                             LocationManager.GPS_PROVIDER, 5000, 10f, locationListener
                         )
+                        requireView().findNavController()
+                            .navigate(R.id.action_editorFragment_to_feedFragment)
                     } else {
                         Toast.makeText(requireContext(), "Включите GPS", Toast.LENGTH_LONG).show()
                     }
